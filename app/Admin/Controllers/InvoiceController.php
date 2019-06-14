@@ -2,7 +2,10 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Extensions\Tools\ReimbursedTool;
+use App\Enum\HasInvoiceEnum;
 use App\Enum\InvoiceTypeEnum;
+use App\Enum\ReimbursedEnum;
 use App\Module\Invoice\Entities\Invoice;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -16,7 +19,7 @@ class InvoiceController extends AdminController
      *
      * @var string
      */
-    protected $title = 'App\Module\Invoice\Entities\Invoice';
+    protected $title = 'Invoice';
 
     /**
      * Make a grid builder.
@@ -26,17 +29,38 @@ class InvoiceController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Invoice);
+        $grid->model()->orderBy("date", "DESC");
 
         $grid->column('id', __('Id'));
         $grid->column('date', __('Date'));
-        $grid->column('type', __('Type'));
-        $grid->column('money', __('Money'));
+        $grid->column('type', __('Type'))->display(function($type){
+            return InvoiceTypeEnum::getInvoiceType($type);
+        });
+        $grid->column('money', "Money")->totalRow();
         $grid->column('quantity', __('Quantity'));
         $grid->column('remark', __('Remark'));
-        $grid->column('has_invoice', __('Has invoice'));
-        $grid->column('deleted_at', __('Deleted at'));
+        $grid->column('has_invoice', __('Has invoice'))->display(function($hasInvoice){
+            return HasInvoiceEnum::getHasInvoiceEnum($hasInvoice);
+        });
+        $grid->reimbursed('reimbursed')->display(function($reimbursed){
+            return ReimbursedEnum::getReimbursedEnum($reimbursed);
+        });
+        $grid->name("name");
         $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+
+        $grid->filter(function($filter){
+            $filter->disableIdFilter();
+            $filter->between("date", "Date")->date();
+            $filter->equal("name", "Name");
+            $filter->equal("type", "Type")->select(InvoiceTypeEnum::getInvoiceType());
+        });
+
+        $grid->tools(function($tools){
+            $tools->batch(function($batch){
+                $batch->add("all reimbursed", new ReimbursedTool());
+            });
+        });
+
 
         return $grid;
     }
@@ -77,10 +101,20 @@ class InvoiceController extends AdminController
         $form->date('date', __('Date'))->default(date('Y-m-d'));
         $form->select('type', __('Type'))->options(InvoiceTypeEnum::getInvoiceType())->default(InvoiceTypeEnum::DINING);
         $form->decimal('money', __('Money'));
-        $form->number('quantity', __('Quantity'));
+        $form->number('quantity', __('Quantity'))->default(1);
         $form->textarea('remark', __('Remark'));
-        $form->number('has_invoice', __('Has invoice'));
 
+        $hasInvoiceStates = [
+            'on' => ['value'=> 1, 'text' => 'YES'],
+            'off'=> ['value'=>2, 'text' => 'NO']
+        ];
+        $form->switch('has_invoice', __('Has invoice'))->states($hasInvoiceStates)->default(HasInvoiceEnum::YES);
+        $reimbursedStates = [
+            'on' => ['value'=> 1, 'text' => 'YES'],
+            'off'=> ['value'=>2, 'text' => 'NO']
+        ];
+        $form->switch("reimbursed")->states($reimbursedStates)->default(ReimbursedEnum::NO);
+        $form->text("name")->placeholder("reimbursement applicant name");
         return $form;
     }
 }

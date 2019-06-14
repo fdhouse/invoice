@@ -6,16 +6,16 @@ namespace App\Enum;
 
 use MyCLabs\Enum\Enum;
 
-class HasInvoiceEnum extends Enum
+class ReimbursedEnum extends Enum
 {
     const YES = 1;
     const NO = 2;
 
-    public static function getHasInvoiceEnum($status = null)
+    public static function getReimbursedEnum($status = null)
     {
         $array = [
-            HasInvoiceEnum::YES => 'yes',
-            HasInvoiceEnum::NO => 'no'
+            self::YES => 'yes',
+            self::NO => 'no'
         ];
 
         if ($status){

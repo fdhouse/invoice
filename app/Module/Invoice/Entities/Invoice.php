@@ -14,7 +14,6 @@ class Invoice extends Model
 {
     use SoftDeletes;
 
-    protected $table = "invoice";
     /**
      * The attributes that are mass assignable.
      *

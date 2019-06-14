@@ -13,7 +13,7 @@ class CreateInvoiceTable extends Migration
      */
     public function up()
     {
-        Schema::create('invoice', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date("date");
             $table->integer("type")->comment("1 餐饮 2 视频 3交通");
@@ -21,7 +21,9 @@ class CreateInvoiceTable extends Migration
             $table->integer("quantity");
             $table->string("remark");
             $table->integer("has_invoice");
-            $table->timestamp("deleted_at");
+            $table->integer("reimbursed")->default(0);
+            $table->text("name");
+            $table->timestamp("deleted_at")->nullable(true);
             $table->timestamps();
         });
     }
@@ -33,6 +35,6 @@ class CreateInvoiceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoice');
+        Schema::dropIfExists('invoices');
     }
 }
