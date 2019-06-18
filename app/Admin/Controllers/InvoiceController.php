@@ -10,7 +10,9 @@ use App\Module\Invoice\Entities\Invoice;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
+use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
 
 class InvoiceController extends AdminController
 {
@@ -29,7 +31,7 @@ class InvoiceController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Invoice);
-        $grid->model()->orderBy("date", "DESC");
+        $grid->model()->orderBy("reimbursed", "ASC")->orderBy("date", "ASC");
 
         $grid->column('id', __('Id'));
         $grid->column('date', __('Date'));
@@ -53,6 +55,7 @@ class InvoiceController extends AdminController
             $filter->between("date", "Date")->date();
             $filter->equal("name", "Name");
             $filter->equal("type", "Type")->select(InvoiceTypeEnum::getInvoiceType());
+            $filter->equal("reimbursed", "reimbursed")->select(ReimbursedEnum::getReimbursedEnum());
         });
 
         $grid->tools(function($tools){
@@ -102,7 +105,7 @@ class InvoiceController extends AdminController
         $form->select('type', __('Type'))->options(InvoiceTypeEnum::getInvoiceType())->default(InvoiceTypeEnum::DINING);
         $form->decimal('money', __('Money'));
         $form->number('quantity', __('Quantity'))->default(1);
-        $form->textarea('remark', __('Remark'));
+        $form->textarea('remark', __('Remark'))->default("食品");
 
         $hasInvoiceStates = [
             'on' => ['value'=> 1, 'text' => 'YES'],
@@ -114,7 +117,15 @@ class InvoiceController extends AdminController
             'off'=> ['value'=>2, 'text' => 'NO']
         ];
         $form->switch("reimbursed")->states($reimbursedStates)->default(ReimbursedEnum::NO);
-        $form->text("name")->placeholder("reimbursement applicant name");
+        $form->text("name")->placeholder("reimbursement applicant name")->default("潘飞");
         return $form;
+    }
+
+    public function reimbursed(Request $request)
+    {
+        foreach (Invoice::find($request->get('ids')) as $invoice) {
+            $invoice->reimbursed = 1;
+            $invoice->save();
+        }
     }
 }

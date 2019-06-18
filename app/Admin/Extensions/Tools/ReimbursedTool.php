@@ -26,7 +26,7 @@ $('{$this->getElementClass()}').on('click', function() {
         url: '{$this->resource}/reimbursed',
         data: {
             _token:LA.token,
-            ids: selectedRows(),
+            ids: $.admin.grid.selected(),
             action: {$this->action}
         },
         success: function () {

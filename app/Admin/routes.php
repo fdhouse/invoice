@@ -12,5 +12,6 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->resource('invoices', InvoiceController::class);
+    $router->post('/invoices/reimbursed', "InvoiceController@reimbursed");
 
 });
