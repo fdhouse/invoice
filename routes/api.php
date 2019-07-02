@@ -20,8 +20,7 @@ $api->version('v1', function ($api){
     $api->group([
         //  'middleware' => 'api',
         'namespace' => 'App\Http\Controllers\api',
-        'prefix' => 'news'
     ], function ($router) {
-        $router->get("/list", "news\NewsController@getNews");
+        $router->get("/invoice", "invoice\InvoiceController@getInvoices")->name("invoice.list");
     });
 });

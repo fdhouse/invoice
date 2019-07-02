@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Extensions\exports\InvoiceExport;
 use App\Admin\Extensions\Tools\ReimbursedTool;
 use App\Enum\HasInvoiceEnum;
 use App\Enum\InvoiceTypeEnum;
@@ -31,7 +32,7 @@ class InvoiceController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Invoice);
-        $grid->model()->orderBy("reimbursed", "ASC")->orderBy("date", "ASC");
+        $grid->model()->orderBy("reimbursed", "DESC")->orderBy("date", "ASC");
 
         $grid->column('id', __('Id'));
         $grid->column('date', __('Date'));
@@ -56,6 +57,7 @@ class InvoiceController extends AdminController
             $filter->equal("name", "Name");
             $filter->equal("type", "Type")->select(InvoiceTypeEnum::getInvoiceType());
             $filter->equal("reimbursed", "reimbursed")->select(ReimbursedEnum::getReimbursedEnum());
+            $filter->equal("has_invoice", "has invoice")->select(HasInvoiceEnum::getHasInvoiceEnum());
         });
 
         $grid->tools(function($tools){
@@ -64,6 +66,7 @@ class InvoiceController extends AdminController
             });
         });
 
+        $grid->exporter(new InvoiceExport());
 
         return $grid;
     }

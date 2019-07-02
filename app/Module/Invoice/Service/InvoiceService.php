@@ -17,7 +17,7 @@ class InvoiceService
     /**
      * Get news data with paginate
      */
-    public function newsList()
+    public function invoiceList()
     {
         $array = $this->invoice->all();
 

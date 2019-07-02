@@ -2,26 +2,26 @@
     "openapi": "3.0.0",
     "info": {
         "title": "ALAMH API",
-        "description": "This is ALAMH api doc.",
+        "description": "This is api doc.",
         "contact": {
             "email": "561272831@qq.com"
         },
         "version": "1.0.0"
     },
     "paths": {
-        "/login/{id}": {
-            "get": {
+        "/": {
+            "post": {
                 "tags": [
-                    "login"
+                    "invoice"
                 ],
-                "summary": "TEST SWAGGER",
-                "operationId": "index",
+                "summary": "get invoice info",
+                "operationId": "invoice",
                 "requestBody": {
                     "description": "request body",
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/newsPto"
+                                "$ref": "#/components/schemas/invoicePto"
                             }
                         }
                     }
@@ -32,38 +32,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/newsVo"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/news": {
-            "get": {
-                "tags": [
-                    "news"
-                ],
-                "summary": "news list",
-                "operationId": "index",
-                "parameters": [
-                    {
-                        "name": "title",
-                        "in": "query",
-                        "description": "news title",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/newsVo"
+                                    "$ref": "#/components/schemas/invoiceVo"
                                 }
                             }
                         }
@@ -74,19 +43,83 @@
     },
     "components": {
         "schemas": {
-            "newsPto": {
+            "invoicePto": {
                 "properties": {
-                    "title": {
-                        "description": "The news title",
+                    "name": {
+                        "description": "The user name",
+                        "type": "string"
+                    },
+                    "param1": {
+                        "description": "param1",
+                        "type": "string"
+                    },
+                    "param2": {
+                        "description": "param2",
+                        "type": "string"
+                    },
+                    "param3": {
+                        "description": "param3",
+                        "type": "string"
+                    },
+                    "param4": {
+                        "description": "param4",
+                        "type": "string"
+                    },
+                    "param5": {
+                        "description": "param5",
+                        "type": "string"
+                    },
+                    "param6": {
+                        "description": "param6",
+                        "type": "string"
+                    },
+                    "param7": {
+                        "description": "param7",
+                        "type": "string"
+                    },
+                    "param8": {
+                        "description": "param8",
                         "type": "string"
                     }
                 },
                 "type": "object"
             },
-            "newsVo": {
+            "invoiceVo": {
                 "properties": {
-                    "title": {
-                        "description": "The news title",
+                    "name": {
+                        "description": "The user name",
+                        "type": "string"
+                    },
+                    "param1": {
+                        "description": "param1",
+                        "type": "string"
+                    },
+                    "param2": {
+                        "description": "param2",
+                        "type": "string"
+                    },
+                    "param3": {
+                        "description": "param3",
+                        "type": "string"
+                    },
+                    "param4": {
+                        "description": "param4",
+                        "type": "string"
+                    },
+                    "param5": {
+                        "description": "param5",
+                        "type": "string"
+                    },
+                    "param6": {
+                        "description": "param6",
+                        "type": "string"
+                    },
+                    "param7": {
+                        "description": "param7",
+                        "type": "string"
+                    },
+                    "param8": {
+                        "description": "param8",
                         "type": "string"
                     }
                 },
@@ -96,12 +129,8 @@
     },
     "tags": [
         {
-            "name": "login",
-            "description": "test login"
-        },
-        {
-            "name": "news",
-            "description": "news data"
+            "name": "invoice",
+            "description": "invoice info"
         }
     ],
     "externalDocs": {
