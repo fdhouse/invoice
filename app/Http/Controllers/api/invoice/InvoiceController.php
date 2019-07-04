@@ -5,8 +5,10 @@ namespace App\Http\Controllers\api\invoice;
 
 use App\Http\Controllers\api\BaseController;
 use App\Module\Invoice\Service\InvoiceService;
+use App\Module\Invoice\Transformer\InvoiceTransformer;
 use Dingo\Blueprint\Annotation\Method\Get;
 use Dingo\Blueprint\Annotation\Resource;
+use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * invoice manage
@@ -25,7 +27,7 @@ class InvoiceController extends BaseController
     }
 
     /**
-     * @OA\Post(
+     * @OA\Get(
      *     path = "/",
      *     tags = {"invoice"},
      *     summary = "get invoice info",
@@ -44,6 +46,7 @@ class InvoiceController extends BaseController
     public function getInvoices()
     {
         $data = $this->invoiceService->invoiceList();
+        VarDumper::dump($data);
 
         return $data;
     }

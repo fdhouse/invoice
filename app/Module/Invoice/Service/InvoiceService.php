@@ -4,9 +4,13 @@
 namespace App\Module\Invoice\Service;
 
 use App\Module\Invoice\Entities\Invoice;
+use App\Module\Invoice\Transformer\InvoiceTransformer;
+use App\util\DataUtil;
+use Dingo\Api\Routing\Helpers;
 
 class InvoiceService
 {
+    use Helpers;
     public $invoice;
 
     function __construct(Invoice $invoice)
@@ -19,9 +23,9 @@ class InvoiceService
      */
     public function invoiceList()
     {
-        $array = $this->invoice->all();
+        $array = Invoice::paginate();
 
-        return $array;
+        return DataUtil::processDataCollectionPaginate($array, new InvoiceTransformer());
     }
 
 }

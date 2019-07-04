@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Transformers;
+namespace App\Module\Invoice\Transformer;
 
 use App\Module\Invoice\Entities\Invoice;
-use Illuminate\Support\Facades\App;
 use League\Fractal\TransformerAbstract;
 
 /**
