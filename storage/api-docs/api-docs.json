@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "ALAMH API",
+        "title": "DEMO API",
         "description": "This is api doc.",
         "contact": {
             "email": "561272831@qq.com"
