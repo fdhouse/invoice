@@ -5,7 +5,7 @@ namespace App\Module\invoice\Vo;
 
 /**
  * @OA\Schema(
- *     schema="invoiceVo"
+ *     schema="adminInvoiceVo"
  * )
  * Class InvoiceVo
  * @package App\Module\Invoice\Vo

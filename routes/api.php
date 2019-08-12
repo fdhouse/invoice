@@ -23,4 +23,12 @@ $api->version('v1', function ($api){
     ], function ($router) {
         $router->get("/invoice", "invoice\InvoiceController@getInvoices")->name("invoice.list");
     });
+
+    $api->group([
+        //'middleware' => 'store',
+        'prefix' => 'store',
+        'namespace' => 'App\Http\Controllers\store',
+    ], function ($router) {
+        $router->post("/user/login", "login\LoginController@loginIn");
+    });
 });

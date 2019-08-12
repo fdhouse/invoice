@@ -5,12 +5,12 @@ namespace App\Module\invoice\Vo;
 
 /**
  * @OA\Schema(
- *     schema="invoiceVo"
+ *     schema="adminInvoicePto"
  * )
- * Class InvoiceVo
- * @package App\Module\Invoice\Vo
+ * Class InvoicePto
+ * @package App\Module\Invoice\Pto
  */
-class InvoiceVo
+class InvoicePto
 {
     /**
      * The user name

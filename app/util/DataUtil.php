@@ -27,6 +27,6 @@ class DataUtil
     {
         $array = new Collection($data, $transformer);
         $fractal = new Manager();
-        return $fractal->createData($array)->toArray();
+        return current($fractal->createData($array)->toArray());
     }
 }

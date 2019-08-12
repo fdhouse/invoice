@@ -1,0 +1,222 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "ALAMH API",
+        "description": "This is api doc.",
+        "contact": {
+            "email": "561272831@qq.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "invoice"
+                ],
+                "summary": "get invoice info",
+                "operationId": "invoice",
+                "requestBody": {
+                    "description": "request body",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/invoicePto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/invoiceVo"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "adminInvoicePto": {
+                "properties": {
+                    "name": {
+                        "description": "The user name",
+                        "type": "string"
+                    },
+                    "param1": {
+                        "description": "param1",
+                        "type": "string"
+                    },
+                    "param2": {
+                        "description": "param2",
+                        "type": "string"
+                    },
+                    "param3": {
+                        "description": "param3",
+                        "type": "string"
+                    },
+                    "param4": {
+                        "description": "param4",
+                        "type": "string"
+                    },
+                    "param5": {
+                        "description": "param5",
+                        "type": "string"
+                    },
+                    "param6": {
+                        "description": "param6",
+                        "type": "string"
+                    },
+                    "param7": {
+                        "description": "param7",
+                        "type": "string"
+                    },
+                    "param8": {
+                        "description": "param8",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "adminInvoiceVo": {
+                "properties": {
+                    "name": {
+                        "description": "The user name",
+                        "type": "string"
+                    },
+                    "param1": {
+                        "description": "param1",
+                        "type": "string"
+                    },
+                    "param2": {
+                        "description": "param2",
+                        "type": "string"
+                    },
+                    "param3": {
+                        "description": "param3",
+                        "type": "string"
+                    },
+                    "param4": {
+                        "description": "param4",
+                        "type": "string"
+                    },
+                    "param5": {
+                        "description": "param5",
+                        "type": "string"
+                    },
+                    "param6": {
+                        "description": "param6",
+                        "type": "string"
+                    },
+                    "param7": {
+                        "description": "param7",
+                        "type": "string"
+                    },
+                    "param8": {
+                        "description": "param8",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "invoicePto": {
+                "properties": {
+                    "name": {
+                        "description": "The user name",
+                        "type": "string"
+                    },
+                    "param1": {
+                        "description": "param1",
+                        "type": "string"
+                    },
+                    "param2": {
+                        "description": "param2",
+                        "type": "string"
+                    },
+                    "param3": {
+                        "description": "param3",
+                        "type": "string"
+                    },
+                    "param4": {
+                        "description": "param4",
+                        "type": "string"
+                    },
+                    "param5": {
+                        "description": "param5",
+                        "type": "string"
+                    },
+                    "param6": {
+                        "description": "param6",
+                        "type": "string"
+                    },
+                    "param7": {
+                        "description": "param7",
+                        "type": "string"
+                    },
+                    "param8": {
+                        "description": "param8",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "invoiceVo": {
+                "properties": {
+                    "name": {
+                        "description": "The user name",
+                        "type": "string"
+                    },
+                    "param1": {
+                        "description": "param1",
+                        "type": "string"
+                    },
+                    "param2": {
+                        "description": "param2",
+                        "type": "string"
+                    },
+                    "param3": {
+                        "description": "param3",
+                        "type": "string"
+                    },
+                    "param4": {
+                        "description": "param4",
+                        "type": "string"
+                    },
+                    "param5": {
+                        "description": "param5",
+                        "type": "string"
+                    },
+                    "param6": {
+                        "description": "param6",
+                        "type": "string"
+                    },
+                    "param7": {
+                        "description": "param7",
+                        "type": "string"
+                    },
+                    "param8": {
+                        "description": "param8",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "invoice",
+            "description": "invoice info"
+        }
+    ],
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    }
+}
